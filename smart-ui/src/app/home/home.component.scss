@@ -1,0 +1,23 @@
+.option-card {
+    width: 80vw;
+    display: flex;
+}
+
+.action-card {
+    justify-content: center;
+}
+
+.heart-header-image {
+    background-image: url('/assets/heartrate.png');
+    background-size: cover;
+}
+
+.blood-header-image {
+    background-image: url('/assets/bloodpressure.png');
+    background-size: cover;
+}
+
+.weight-header-image {
+    background-image: url('/assets/weight.png');
+    background-size: cover;
+}

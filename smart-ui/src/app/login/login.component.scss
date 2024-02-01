@@ -1,0 +1,14 @@
+.example-card {
+    max-width: 360px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .example-header-image {
+    background-image: url('/assets/smart.png');
+    background-size: cover;
+  }
+
+.action-card {
+    justify-content: center;
+}
