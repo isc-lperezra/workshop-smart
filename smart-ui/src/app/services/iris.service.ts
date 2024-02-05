@@ -23,9 +23,15 @@ export class IrisService {
     )
   }
 
-  getPatient(): Observable<any> {
+  saveObservation(observation: any): Observable<any> {
+    return this.http.post<Response>(
+      IRIS_API + 'Observation', observation, httpOptions
+    )
+  }
+
+  getPatient(email: string): Observable<any> {
     return this.http.get<Response>(
-      IRIS_API + 'Patient', httpOptions
+      IRIS_API + 'Patient?email='+email, httpOptions
     )
   }
 }
