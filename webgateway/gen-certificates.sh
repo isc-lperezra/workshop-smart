@@ -78,6 +78,20 @@ GenCertificate() {
     fi
 }
 
+GenNginxCertificate() {
+    local PUBLIC_SUBJ=$1
+    local CERT_FNAME=$2
+
+    openssl req \
+        -x509 \
+        -nodes \
+        -subj "$PUBLIC_SUBJ" \
+        -days $DAYS \
+        -newkey rsa:2048 \
+        -keyout $CERT_FNAME.key \
+        -out $CERT_FNAME.crt
+}
+
 rm -vfr certificates
 
 mkdir -p ./webgateway-shared
@@ -97,4 +111,8 @@ GenCertificate "/C=ES/ST=Madrid/L=Madrid/O=Community/OU=ES/CN=iris" "./webgatewa
 
 # Generate Apache Web Server Certificate
 
-GenCertificate "/C=ES/ST=Madrid/L=Madrid/O=Community/OU=ES/CN=webgateway" "$CRTFNAME" "./webgateway-shared/CA_Server"
+GenCertificate "/C=ES/ST=Madrid/L=Madrid/O=Community/OU=ES/CN=webgateway" "./webgateway-shared/apache_webgateway" "./webgateway-shared/CA_Server"
+
+# Generate nginx certificate
+
+GenNginxCertificate "/C=ES/ST=Madrid/L=Madrid/O=Community/OU=ES/CN=localhost" "./webgateway-shared/smart_ui"

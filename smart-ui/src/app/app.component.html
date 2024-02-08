@@ -23,9 +23,9 @@
       <a mat-list-item (click)="auth.loginWithRedirect()"><span class="item-menu"><mat-icon>login</mat-icon><label class="label-menu">Login</label></span></a>
     </mat-nav-list>
     <mat-nav-list *ngIf="(auth.isAuthenticated$ | async) !== false">
-      <a mat-list-item routerLink="."><span class="item-menu"><mat-icon>favorite_border</mat-icon><label class="label-menu">Heart rate</label></span></a>
-      <a mat-list-item routerLink="."><span class="item-menu"><mat-icon>assessment</mat-icon><label class="label-menu">Blood pressure</label></span></a>
-      <a mat-list-item routerLink="."><span class="item-menu"><mat-icon>monitor_weight</mat-icon><label class="label-menu">Weight</label></span></a>
+      <a mat-list-item routerLink="forms/heart"><span class="item-menu"><mat-icon>favorite_border</mat-icon><label class="label-menu">Heart rate</label></span></a>
+      <a mat-list-item routerLink="forms/blood"><span class="item-menu"><mat-icon>assessment</mat-icon><label class="label-menu">Blood pressure</label></span></a>
+      <a mat-list-item routerLink="forms/weight"><span class="item-menu"><mat-icon>monitor_weight</mat-icon><label class="label-menu">Weight</label></span></a>
     </mat-nav-list>
   </mat-sidenav>
   

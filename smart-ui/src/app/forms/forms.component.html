@@ -46,6 +46,7 @@
                 </mat-card-content>      
                 <mat-card-actions class="action-card">
                     <button mat-raised-button type="submit">SAVE</button>
+                    <button mat-raised-button type="button" (click)="cancel()">CANCEL</button>
                 </mat-card-actions>
             </mat-card>
         </form>
@@ -66,12 +67,13 @@
                 </mat-card-content>      
                 <mat-card-actions class="action-card">
                     <button mat-raised-button type="submit">SAVE</button>
+                    <button mat-raised-button type="button" (click)="cancel()">CANCEL</button>
                 </mat-card-actions>
             </mat-card>
         </form>
-    </div> 
+    </div>
     <div *ngIf="type === 'blood'" class="div-card">
-        <form (ngSubmit)="onSubmitHeart()" [formGroup]="bloodForm">
+        <form (ngSubmit)="onSubmitBlood()" [formGroup]="bloodForm">
             <mat-card class="option-card">
                 <mat-card-header>
                     <div mat-card-avatar class="blood-header-image"></div>
@@ -90,22 +92,43 @@
                 </mat-card-content>      
                 <mat-card-actions class="action-card">
                     <button mat-raised-button>SAVE</button>
+                    <button mat-raised-button type="button" (click)="cancel()">CANCEL</button>
                 </mat-card-actions>
             </mat-card>
         </form>
     </div>
     <div *ngIf="type === 'weight'" class="div-card">
+        <form (ngSubmit)="onSubmitWeight()" [formGroup]="weightForm">
+            <mat-card class="option-card">
+                <mat-card-header>
+                    <div mat-card-avatar class="weight-header-image"></div>
+                    <mat-card-title>Weight</mat-card-title>
+                    <mat-card-subtitle>Save your weight</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-form-field>
+                        <mat-label>Kg</mat-label>
+                        <input matInput formControlName="Weight">
+                    </mat-form-field>
+                </mat-card-content>
+                <mat-card-actions class="action-card">
+                    <button mat-raised-button>SAVE</button>
+                    <button mat-raised-button type="button" (click)="cancel()">CANCEL</button>
+                </mat-card-actions>
+            </mat-card>
+        </form>
+    </div>
+    <div class="div-card">
         <mat-card class="option-card">
             <mat-card-header>
-                <div mat-card-avatar class="weight-header-image"></div>
-                <mat-card-title>Weight</mat-card-title>
-                <mat-card-subtitle>Save your weight</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-                Keep your weight under control. Obesity is a common, serious, and costly chronic disease of adults and children.
-            </mat-card-content>
+                <div mat-card-avatar class="chart-header-image"></div>
+                <mat-card-title>Heart Rate Chart</mat-card-title>
+                <mat-card-subtitle>Evolution</mat-card-subtitle>
+            </mat-card-header>  
+            <mat-card-content>                    
+                <canvasjs-chart [options]="chartOptions"></canvasjs-chart>    
+            </mat-card-content>      
             <mat-card-actions class="action-card">
-                <button mat-raised-button>SAVE</button>
             </mat-card-actions>
         </mat-card>
     </div>

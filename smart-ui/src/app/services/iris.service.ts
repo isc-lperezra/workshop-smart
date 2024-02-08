@@ -34,4 +34,10 @@ export class IrisService {
       IRIS_API + 'Patient?email='+email, httpOptions
     )
   }
+
+  getObservations(reference: string): Observable<any> {
+    return this.http.get<Response>(
+      IRIS_API + 'Observation?patient=Patient/'+reference, httpOptions
+    )
+  }
 }

@@ -33,7 +33,7 @@ export class HomeComponent {
                 else {
                     this.isSaved = true;
                     sessionStorage.setItem("personId",res.entry[0].resource.id);
-                    sessionStorage.setItem("personName",res.entry[0].resource.name[0].given[0]+" "+res.entry[0].resource.name[0].given);
+                    sessionStorage.setItem("personName",res.entry[0].resource.name[0].given[0]+" "+res.entry[0].resource.name[0].family);
                 }
                 this.isLoading = false;
             },

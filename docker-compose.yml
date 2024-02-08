@@ -37,14 +37,15 @@ services:
     depends_on:
     - iris
     
-# angular
-#  angular:
-#    init: true
-#    container_name: smart-ui
-#    build:
-#      context: .
-#      dockerfile: smart-ui/Dockerfile
-#    ports:
-#      - 4200:4200
-#    depends_on:
-#      - iris
+#angular
+  angular:
+    init: true
+    container_name: smart-ui
+    build:
+      context: .
+      dockerfile: smart-ui/Dockerfile
+    ports:
+      - 80:80
+      - 443:443
+    depends_on:
+      - iris

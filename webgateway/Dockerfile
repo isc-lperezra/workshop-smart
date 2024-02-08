@@ -8,9 +8,9 @@ RUN wget https://www.openssl.org/source/openssl-1.0.2g.tar.gz -O - | tar -xz
 WORKDIR /openssl-1.0.2g
 RUN ./config --prefix=/usr/local/openssl --openssldir=/usr/local/openssl && make && make install
 
-COPY --chown=$ISC_PACKAGE_MGRUSER:$ISC_PACKAGE_IRISGROUP /webgateway/gen-certificates.sh /
-RUN chmod +x /gen-certificates.sh
-
 WORKDIR /
+
+COPY --chown=$ISC_PACKAGE_MGRUSER:$ISC_PACKAGE_IRISGROUP /webgateway/gen-certificates.sh /gen-certificates.sh
+RUN chmod +x /gen-certificates.sh
 
 RUN /gen-certificates.sh
