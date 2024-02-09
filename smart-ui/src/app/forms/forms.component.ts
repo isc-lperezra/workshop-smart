@@ -20,7 +20,7 @@ export class FormsComponent implements OnInit, OnDestroy {
     Lastname: new UntypedFormControl('', {nonNullable: true, validators: [Validators.required]}),
     Gender: new UntypedFormControl('', {nonNullable: true, validators: [Validators.required]}),
     BirthDate: new UntypedFormControl('', {nonNullable: true, validators: [Validators.required]}),
-    Phone: new UntypedFormControl('', {nonNullable: false}),
+    Phone: new UntypedFormControl('', {nonNullable: true, validators: [Validators.required]}),
     Email: new UntypedFormControl({value: '', disabled: true}, {nonNullable: true, validators: [Validators.required]}),
     Identifier: new UntypedFormControl('', {nonNullable: true, validators: [Validators.required]}),
   })
@@ -61,25 +61,28 @@ export class FormsComponent implements OnInit, OnDestroy {
                     var dataChart1 = [];
                     var dataChart2 = [];
                     var titleChart = "";
-                    for (var entry of res.entry) {
-                      const keyDate = entry.resource.effectiveDateTime.split("T")[0].split("-")
-                      const keyTime = entry.resource.effectiveDateTime.split("T")[1].split(":")
-                      if (entry.resource.code.text === "Heart rate" && this.type === "heart"){
-                        dataChart1.push({label: keyDate[2]+"/"+keyDate[1]+" "+keyTime[0]+":"+keyTime[1], y: entry.resource.valueQuantity.value});
-                        titleChart = entry.resource.code.text
-                      }
-                      else if (entry.resource.code.text === "Blood pressure systolic & diastolic"  && this.type === "blood")
-                      {
-                        dataChart1.push({label: keyDate[2]+"/"+keyDate[1]+" "+keyTime[0]+":"+keyTime[1], y: entry.resource.component[0].valueQuantity.value});
-                        dataChart2.push({label: keyDate[2]+"/"+keyDate[1]+" "+keyTime[0]+":"+keyTime[1], y: entry.resource.component[1].valueQuantity.value});
-                        titleChart = entry.resource.code.text
-                      }
-                      else if (entry.resource.code.text === "Body Weight"  && this.type === "weight")
-                      {
-                        dataChart1.push({label: keyDate[2]+"/"+keyDate[1]+" "+keyTime[0]+":"+keyTime[1], y: entry.resource.valueQuantity.value});
-                        titleChart = entry.resource.code.text
+                    if (res.total > 0){
+                      for (var entry of res.entry) {
+                        const keyDate = entry.resource.effectiveDateTime.split("T")[0].split("-")
+                        const keyTime = entry.resource.effectiveDateTime.split("T")[1].split(":")
+                        if (entry.resource.code.text === "Heart rate" && this.type === "heart"){
+                          dataChart1.push({label: keyDate[2]+"/"+keyDate[1]+" "+keyTime[0]+":"+keyTime[1], y: entry.resource.valueQuantity.value});
+                          titleChart = entry.resource.code.text
+                        }
+                        else if (entry.resource.code.text === "Blood pressure systolic & diastolic"  && this.type === "blood")
+                        {
+                          dataChart1.push({label: keyDate[2]+"/"+keyDate[1]+" "+keyTime[0]+":"+keyTime[1], y: entry.resource.component[0].valueQuantity.value});
+                          dataChart2.push({label: keyDate[2]+"/"+keyDate[1]+" "+keyTime[0]+":"+keyTime[1], y: entry.resource.component[1].valueQuantity.value});
+                          titleChart = entry.resource.code.text
+                        }
+                        else if (entry.resource.code.text === "Body Weight"  && this.type === "weight")
+                        {
+                          dataChart1.push({label: keyDate[2]+"/"+keyDate[1]+" "+keyTime[0]+":"+keyTime[1], y: entry.resource.valueQuantity.value});
+                          titleChart = entry.resource.code.text
+                        }
                       }
                     }
+
                     if (this.type === "heart" || this.type === "weight") {
                       this.chartOptions = {
                         title: {
@@ -109,7 +112,6 @@ export class FormsComponent implements OnInit, OnDestroy {
                       ]                
                       };
                     }
-                    
                     this.isLoading = false;
                 }
                );
@@ -168,7 +170,7 @@ export class FormsComponent implements OnInit, OnDestroy {
   }
 
   get weight() {
-    return this.bloodForm.get('Weight');
+    return this.weightForm.get('Weight');
   }
 
   onSubmitHeart(): void {

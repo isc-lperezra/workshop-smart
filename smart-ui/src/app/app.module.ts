@@ -34,8 +34,8 @@ import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
   imports: [
     BrowserModule,
     AuthModule.forRoot({
-      domain: 'dev-xu2ol3jujbompmta.eu.auth0.com',
-      clientId: '4lNa4G5nGmYu7ug3PeNYvlc6UI4Tm7mp',
+      domain: 'YOUR_DOMAIN',
+      clientId: 'YOUR_CLIENT_ID',
       authorizationParams: {
         redirect_uri: window.location.origin,
         audience: 'https://localhost:8443/smart/fhir/r5',
@@ -44,7 +44,7 @@ import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
       httpInterceptor: {
         allowedList: [
           {
-            // Match any request that starts 'https://{yourDomain}/api/v2/' (note the asterisk)
+            // Match any request that starts 'https://{yourDomain}/smart/fhir/r5/' (note the asterisk)
             uri: '/smart/fhir/r5/*',
             allowAnonymous: false
           }

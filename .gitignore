@@ -40,3 +40,9 @@ smart-ui/typings
 # System files
 smart-ui/.DS_Store
 smart-ui/Thumbs.db
+
+## Configuration
+smart-ui/src/app/app.module_functional.ts
+
+webgateway/shared/durable
+webgateway/shared/durable/webgateway/CSP.log
