@@ -94,6 +94,6 @@ The name has to be the same that you used during the client configuration. Save 
 # Opening Angular application.
 
 This project is configured to deploy an Angular application in the following address: [URL](https://localhost). This application has been created with Angular Material to simulate an application for smartphones, if you are using Google Chrome or Firefox you can change the visualization pressing **CTRL + SHIFT + M**
-![Login screen](/images/login_screen.png)
+![Login screen](/images/login_smart.png)
 
-Click on login and introduce the user from your Auth0 account.
+Click on login and introduce the user from your Auth0 account. Auth0 will request permission to access to your Auth0 account, grant it.
